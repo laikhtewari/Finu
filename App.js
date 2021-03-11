@@ -15,6 +15,9 @@ export default function App(props) {
 				default_text='Search Documents'
 			/>
 
+			<AddDocument/>
+			
+
 		</View>
 	);
 }
@@ -70,6 +73,30 @@ function Searchbar(props) {
 					source={require('./assets/search.png')}
 				/>
 			</View>
+		</View>
+	);
+}
+
+function Document(props) {
+	return(
+		<View style={{flex:1, borderWidth:1}}>
+			<Image 
+				style={{marginBottom: 10}}
+				source={require('./assets/document_outline.png')}
+			/>
+			<View style={{flex: 1, flexDirection: 'row', borderWidth: 1}}>
+				<Text style={{flex: 2}}>{props.document_title}</Text>
+				<View style={{flex: 1, width: 10, height: 10, backgroundColor: 'powderblue', borderRadius: 10}}/>
+			</View>
+		</View>
+	);
+}
+
+function AddDocument(props) {
+	return(
+		<View style={{flex:1, borderWidth:1, height:500, width:150, margin:50}}>
+			<Image source={require('./assets/add_document.png')}/>
+			<Text style={{textAlign: 'center'}}>New File</Text>
 		</View>
 	);
 }
