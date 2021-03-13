@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Image} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, Image, Keyboard, TouchableWithoutFeedback} from 'react-native';
+
+global.doc_margin = 5
 
 export default function App(props) {
 	const [value, onChangeText] = React.useState('Search Documents');
@@ -15,9 +17,10 @@ export default function App(props) {
 				default_text='Search Documents'
 			/>
 
-			<AddDocument/>
-			
+			<FilterScrollable/>
 
+			<DocumentGrid/>
+			
 		</View>
 	);
 }
@@ -44,10 +47,11 @@ function Searchbar(props) {
 				height: props.search_bar_height,
 				underlineColor: 'black',
 				borderBottomWidth: 2,
-				marginRight: 20,
-				marginLeft: 20,
+				marginRight: 50,
+				marginLeft: 50,
 				bottom: 0
 		}}>
+
 			<TextInput
 				style={{ 
 					height: props.search_bar_height,
@@ -58,6 +62,7 @@ function Searchbar(props) {
 				placeholder={props.default_text}
 				placeholderTextColor='grey'
 			/>
+			
 			<View style={{
 				position: 'absolute',
 				right: 0,
@@ -77,16 +82,22 @@ function Searchbar(props) {
 	);
 }
 
+function ColoredCircle(props) {
+	return(
+		<View style={{width: 10, height: 10, marginTop: 3, marginLeft: 3, backgroundColor: props.color, borderRadius: 10}}/>
+	);
+}
+
 function Document(props) {
 	return(
-		<View style={{flex:1, borderWidth:1}}>
+		<View style={{width: 100, alignItems:'center', margin: global.doc_margin}}>
 			<Image 
 				style={{marginBottom: 10}}
 				source={require('./assets/document_outline.png')}
 			/>
-			<View style={{flex: 1, flexDirection: 'row', borderWidth: 1}}>
-				<Text style={{flex: 2}}>{props.document_title}</Text>
-				<View style={{flex: 1, width: 10, height: 10, backgroundColor: 'powderblue', borderRadius: 10}}/>
+			<View style={{flexDirection: 'row'}}>
+				<Text style={{}}>{props.document_title}</Text>
+				<ColoredCircle color='powderblue'/>
 			</View>
 		</View>
 	);
@@ -94,9 +105,78 @@ function Document(props) {
 
 function AddDocument(props) {
 	return(
-		<View style={{flex:1, borderWidth:1, height:500, width:150, margin:50}}>
-			<Image source={require('./assets/add_document.png')}/>
+		<View style={{width: 100, alignItems:'center', margin: global.doc_margin}}>
+			<Image 
+				style={{marginBottom: 10}}
+				source={require('./assets/add_document.png')}
+			/>
 			<Text style={{textAlign: 'center'}}>New File</Text>
+		</View>
+	);
+}
+
+function DocumentGrid(props) {
+	//loop to gen n Document components in const
+
+	return(
+			<ScrollView contentContainerStyle={{margin:30, flexDirection:'column', alignItems:'center'}}>
+				<DocumentRow include_add='true'/>
+				<DocumentRow/>
+				<DocumentRow/>
+				<DocumentRow/>
+				<DocumentRow/>
+				<DocumentRow/>
+				<View style={{height:200}}></View>
+			</ScrollView>
+
+	);
+}
+
+function DocumentRow(props) {
+	const comp = props.include_add ? <AddDocument/> : <Document document_title={'Document 0'}/>;
+	return(
+		<View style={{flexDirection: 'row', alignItems:'center'}}>
+			{comp}
+			<Document
+				document_title={'Document 1'}
+			/>
+			<Document
+				document_title={'Document 2'}
+			/>
+		</View>
+	);
+}
+
+function FilterScrollable(props) {
+	return(
+		<View style={{marginLeft: 50, marginTop: 30}}>
+			<Text style={{fontSize: 16}}>Sort by:</Text>
+			<ScrollView horizontal='true' contentContainerStyle={{flexDirection: 'row'}}>
+				<Filter filter_name='Family' color='green'/>
+				<Filter filter_name='Friends' color='yellow'/>
+				<Filter filter_name='School' color='magenta'/>
+				<Filter filter_name='Taxes' color='orange'/>
+			</ScrollView>
+		</View>
+	);
+}
+
+function Filter(props) {
+	return(
+		<View 
+			style={{
+				borderWidth: 1, 
+				borderRadius: 20, 
+				borderColor: 'grey', 
+				alignSelf: 'flex-start', 
+				flexDirection: 'row', 
+				alignItems: 'center',
+				padding: 10,
+				marginRight: 10,
+				marginTop: 10
+			}}>
+			<ColoredCircle color={props.color} />
+			<Text style={{paddingLeft: 10, paddingRight: 10}}>{props.filter_name}</Text>
 		</View>
 	);
 }
