@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
   Image,
+  TouchableOpacity,
 } from "react-native";
 
 export default function App(navigation, route, props) {
