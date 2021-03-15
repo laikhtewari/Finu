@@ -11,10 +11,17 @@ import {
 } from "react-native";
 
 export default function App(navigation, route, props) {
-  const [sent, setSent] = useState([]);
-  const [recieved, setRecieved] = useState([]);
+  const [sent, setSent] = useState([
+    [0, "Bob"],
+    [1, "Alice"],
+  ]);
+  const [recieved, setRecieved] = useState([
+    [0, "Julia"],
+    [1, "Angela"],
+  ]);
+  const [text, setText] = useState("");
 
-  const renderSent = ({ index, item }) => {
+  const renderSent = ({ index, name }) => {
     return (
       <TouchableOpacity
       // onPress={() =>
@@ -23,13 +30,13 @@ export default function App(navigation, route, props) {
       >
         <Image source={require("../../assets/mail_icon.png")} />
         <Text style={{ marginTop: 10, color: "black" }}>
-          You sent Julia an invite!
+          You sent {name} an invite!
         </Text>
       </TouchableOpacity>
     );
   };
 
-  const renderRecieved = ({ index, item }) => {
+  const renderRecieved = ({ index, name }) => {
     return (
       <TouchableOpacity
       // onPress={() =>
@@ -38,10 +45,14 @@ export default function App(navigation, route, props) {
       >
         <Image source={require("../../assets/mail_icon.png")} />
         <Text style={{ marginTop: 10, color: "black" }}>
-          Julia sent you an invite!
+          {name} sent you an invite!
         </Text>
       </TouchableOpacity>
     );
+  };
+
+  const keyExtractor = (index) => {
+    return index.toString();
   };
 
   return (
@@ -51,7 +62,7 @@ export default function App(navigation, route, props) {
         <FlatList
           data={sent}
           renderItem={renderSent}
-          keyExtractor={(item, index) => keyExtractor(index)}
+          keyExtractor={(name, index) => keyExtractor(index)}
         />
       </View>
       <View style={styles.flatlist}>
@@ -59,7 +70,7 @@ export default function App(navigation, route, props) {
         <FlatList
           data={recieved}
           renderItem={renderRecieved}
-          keyExtractor={(item, index) => keyExtractor(index)}
+          keyExtractor={(name, index) => keyExtractor(index)}
         />
       </View>
     </SafeAreaView>
