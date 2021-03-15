@@ -47,7 +47,7 @@ export default function App(navigation, route, props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.flatlist}>
-        <Text>Sent</Text>
+        <Text style={styles.subtitle}>Sent Invitations</Text>
         <FlatList
           data={sent}
           renderItem={renderSent}
@@ -55,7 +55,7 @@ export default function App(navigation, route, props) {
         />
       </View>
       <View style={styles.flatlist}>
-        <Text>Recieved</Text>
+        <Text style={styles.subtitle}>Recieved Invitations</Text>
         <FlatList
           data={recieved}
           renderItem={renderRecieved}
@@ -76,6 +76,10 @@ const styles = StyleSheet.create({
   flatlist: {
     flex: 1,
     width: "100%",
+  },
+  subtitle: {
+    fontSize: 20,
+    margin: 10,
   },
   textinputrow: {
     flexDirection: "row",

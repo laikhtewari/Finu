@@ -186,6 +186,7 @@ function FilterScrollable(props) {
     <View style={{ marginLeft: 20, marginTop: 30, marginBottom: 20 }}>
       <Text style={{ fontSize: 16 }}>Sort by:</Text>
       <ScrollView
+        style={{ width: "100%" }}
         horizontal="true"
         contentContainerStyle={{ flexDirection: "row" }}
       >
@@ -193,6 +194,8 @@ function FilterScrollable(props) {
         <Filter filter_name="Friends" color="yellow" />
         <Filter filter_name="School" color="magenta" />
         <Filter filter_name="Taxes" color="orange" />
+        <Filter filter_name="Rent" color="blue" />
+        <Filter filter_name="Lease" color="brown" />
       </ScrollView>
     </View>
   );
