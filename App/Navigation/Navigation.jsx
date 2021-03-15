@@ -3,7 +3,7 @@ import { StyleSheet, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/HomeScreen";
-import InvitationsScreen from "../Screens/InvitationsScreen";
+import InvitesScreen from "../Screens/InvitesScreen";
 
 const Stack = createStackNavigator();
 
@@ -12,17 +12,17 @@ export default function Navigator() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="HomeScreen"
+          name="Home"
           component={HomeScreen}
           options={{
-            headerTitle: () => <Text>Home</Text>,
+            headerTitle: () => <Text style={styles.header}>Home</Text>,
           }}
         />
         <Stack.Screen
-          name="InvitationsScreen"
-          component={InvitationsScreen}
+          name="Invites"
+          component={InvitesScreen}
           options={{
-            headerTitle: () => <Text>Invitations</Text>,
+            headerTitle: () => <Text style={styles.header}>Invites</Text>,
           }}
         />
       </Stack.Navigator>
@@ -32,7 +32,9 @@ export default function Navigator() {
 
 const styles = StyleSheet.create({
   header: {
+    // fontFamily: "DM Sans",
     textAlign: "center",
-    fontSize: 50,
+    fontSize: 32,
+    fontWeight: "600",
   },
 });

@@ -11,10 +11,7 @@ import {
 } from "react-native";
 
 export default function App(navigation, route, props) {
-  const [sent, setSent] = useState([
-    [0, "Bob"],
-    [1, "Alice"],
-  ]);
+  const [sent, setSent] = useState(["Bob", "Alice"]);
   const [recieved, setRecieved] = useState([
     [0, "Julia"],
     [1, "Angela"],
@@ -24,11 +21,13 @@ export default function App(navigation, route, props) {
   const renderSent = ({ index, name }) => {
     return (
       <TouchableOpacity
-      // onPress={() =>
-      //   some popup function
-      // }
+        // onPress={() => some popup function }
+        style={styles.invite}
       >
-        <Image source={require("../../assets/mail_icon.png")} />
+        <Image
+          source={require("../../assets/mail_icon.png")}
+          style={styles.icon}
+        />
         <Text style={{ marginTop: 10, color: "black" }}>
           You sent {name} an invite!
         </Text>
@@ -39,11 +38,13 @@ export default function App(navigation, route, props) {
   const renderRecieved = ({ index, name }) => {
     return (
       <TouchableOpacity
-      // onPress={() =>
-      //   some popup function
-      // }
+        // onPress={() => some popup function }
+        style={styles.invite}
       >
-        <Image source={require("../../assets/mail_icon.png")} />
+        <Image
+          source={require("../../assets/mail_icon.png")}
+          style={styles.icon}
+        />
         <Text style={{ marginTop: 10, color: "black" }}>
           {name} sent you an invite!
         </Text>
@@ -88,8 +89,18 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
+  invite: {
+    flexDirection: "row",
+    margin: 5,
+    marginLeft: 10,
+  },
+  icon: {
+    marginRight: 10,
+  },
   subtitle: {
-    fontSize: 18,
+    // fontFamily: "DM Sans",
+    fontSize: 22,
+    fontWeight: "400",
     margin: 10,
   },
   textinputrow: {

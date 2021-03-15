@@ -21,7 +21,7 @@ export default function App({ navigation }) {
   return (
     <SafeAreaView>
       <TouchableOpacity
-        onPress={() => navigation.navigate("InvitationsScreen")}
+        onPress={() => navigation.navigate("Invites")}
         style={{
           alignItems: "flex-end",
           marginTop: 10,
@@ -47,9 +47,9 @@ export default function App({ navigation }) {
 
 function Mail(props) {
   return (
-    <View>
+    <View style={{ alignItems: "center" }}>
       <Image source={require("../../assets/mail_icon.png")} />
-      <Text style={{ marginTop: 10, color: "black" }}>Invites</Text>
+      <Text style={styles.mailText}>Invites</Text>
     </View>
   );
 }
@@ -229,8 +229,11 @@ function Filter(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  mailText: {
+    fontSize: 13,
+    fontWeight: "bold",
   },
 });
