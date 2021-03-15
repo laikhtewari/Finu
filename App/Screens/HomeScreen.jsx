@@ -72,12 +72,13 @@ function Searchbar(props) {
           color: "black",
           fontSize: 24,
         }}
-        // onChangeText={}
+        // onChangeText={(event.target.text) => updateTextStateFunc()}
         placeholder={props.default_text}
         placeholderTextColor="grey"
       />
 
-      <View
+      <TouchableOpacity
+        // onPress={() => searchFunc()}
         style={{
           position: "absolute",
           right: 0,
@@ -93,7 +94,7 @@ function Searchbar(props) {
           }}
           source={require("../../assets/search.png")}
         />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -139,7 +140,7 @@ function AddDocument(props) {
         style={{ marginBottom: 10 }}
         source={require("../../assets/add_document.png")}
       />
-      <Text style={{ textAlign: "center" }}>New File</Text>
+      <Text style={{ textAlign: "center" }}>New Project</Text>
     </View>
   );
 }
@@ -183,12 +184,12 @@ function DocumentRow(props) {
 
 function FilterScrollable(props) {
   return (
-    <View style={{ marginLeft: 20, marginTop: 30, marginBottom: 20 }}>
-      <Text style={{ fontSize: 16 }}>Sort by:</Text>
+    <View style={{ margin: 20 }}>
+      <Text style={{ fontSize: 18 }}>Sort by:</Text>
       <ScrollView
         style={{ width: "100%" }}
-        horizontal="true"
-        contentContainerStyle={{ flexDirection: "row" }}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
       >
         <Filter filter_name="Family" color="green" />
         <Filter filter_name="Friends" color="yellow" />
@@ -196,6 +197,7 @@ function FilterScrollable(props) {
         <Filter filter_name="Taxes" color="orange" />
         <Filter filter_name="Rent" color="blue" />
         <Filter filter_name="Lease" color="brown" />
+        <Filter filter_name=" + Add Filter" />
       </ScrollView>
     </View>
   );
@@ -216,7 +218,7 @@ function Filter(props) {
         marginTop: 10,
       }}
     >
-      <ColoredCircle color={props.color} />
+      {props.color && <ColoredCircle color={props.color} />}
       <Text style={{ paddingLeft: 10, paddingRight: 10 }}>
         {props.filter_name}
       </Text>
@@ -232,16 +234,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-//   text: {
-//     fontSize: 50,
-//     textAlign: "center",
-//   },
-// });

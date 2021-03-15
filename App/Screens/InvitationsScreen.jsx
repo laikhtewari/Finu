@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 18,
     margin: 10,
   },
   textinputrow: {
