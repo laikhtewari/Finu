@@ -13,8 +13,20 @@ import {
   Pressable,
 } from "react-native";
 import HomeButton from "../Components/HomeButton";
+import { AppLoading } from "expo-app-loading";
+import {
+  useFonts,
+  DMSans_400Regular,
+  DMSans_500Medium,
+  DMSans_700Bold,
+} from "@expo-google-fonts/dm-sans";
 
 export default function App({ navigation }, route, props) {
+  let [fontsLoaded] = useFonts({
+    DMSans_400Regular,
+    DMSans_500Medium,
+    DMSans_700Bold,
+  });
   const [modalVisible, setModalVisible] = useState(false);
   const [sent, setSent] = useState([]);
   const [recieved, setRecieved] = useState([
@@ -42,18 +54,54 @@ export default function App({ navigation }, route, props) {
 
   const renderRecieved = ({ index, name }) => {
     return (
-      <TouchableOpacity
-        // onPress={() => some popup function }
-        style={styles.invite}
-      >
-        <Image
-          source={require("../../assets/mail_icon.png")}
-          style={styles.icon}
-        />
-        <View style={styles.invitetextwrapper}>
-          <Text style={styles.invitetext}>{name} sent you an invite!</Text>
-        </View>
-      </TouchableOpacity>
+      <View>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          // onRequestClose={() => {
+          //   Alert.alert("Modal has been closed.");
+          //   setModalVisible(!modalVisible);
+          // }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                {name} sent you an invitation to collaborate on their
+                PLACEHOLDER_NAME project
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Pressable
+                  style={[styles.button, styles.buttonDecline]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.buttonText}>Decline</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonAccept]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.buttonText}>Accept</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
+        <Pressable style={styles.invite} onPress={() => setModalVisible(true)}>
+          <Image
+            source={require("../../assets/mail_icon.png")}
+            style={styles.icon}
+          />
+          <View style={styles.invitetextwrapper}>
+            <Text style={styles.invitetext}>{name} sent you an invite!</Text>
+          </View>
+        </Pressable>
+      </View>
     );
   };
 
@@ -61,6 +109,9 @@ export default function App({ navigation }, route, props) {
     return index.toString();
   };
 
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // } else {
   return (
     <SafeAreaView style={styles.container}>
       <HomeButton navigation={navigation} />
@@ -90,7 +141,7 @@ export default function App({ navigation }, route, props) {
         )}
       </View>
 
-      <View style={styles.centeredView}>
+      {/* <View style={styles.centeredView}>
         <Modal
           animationType="fade"
           transparent={true}
@@ -109,48 +160,49 @@ export default function App({ navigation }, route, props) {
               <View
                 style={{
                   flexDirection: "row",
-                  justifyContent: "space-evenly",
+                  justifyContent: "space-between",
                 }}
               >
                 <Pressable
-                  style={[styles.button, styles.buttonClose]}
+                  style={[styles.button, styles.buttonDecline]}
                   onPress={() => setModalVisible(!modalVisible)}
                 >
-                  <Text style={styles.textStyle}>Decline</Text>
+                  <Text style={styles.buttonText}>Decline</Text>
                 </Pressable>
                 <Pressable
-                  style={[styles.button, styles.buttonClose]}
+                  style={[styles.button, styles.buttonAccept]}
                   onPress={() => setModalVisible(!modalVisible)}
                 >
-                  <Text style={styles.textStyle}>Accept</Text>
+                  <Text style={styles.buttonText}>Accept</Text>
                 </Pressable>
               </View>
             </View>
           </View>
         </Modal>
         <Pressable
-          style={[styles.button, styles.buttonOpen]}
+          style={[styles.button, styles.buttonAccept]}
           onPress={() => setModalVisible(true)}
         >
-          <Text style={styles.textStyle}>Show Modal</Text>
+          <Text style={styles.buttonText}>Show Modal</Text>
         </Pressable>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 }
+// }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   flatlist: {
     // flex: 1,
     width: "100%",
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 10,
+    marginBottom: 20,
   },
   invite: {
     flexDirection: "row",
@@ -165,7 +217,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   invitetext: {
-    // fontFamily: "DM Sans",
+    fontFamily: "DMSans_400Regular",
     fontSize: 22,
     marginLeft: 3,
     margin: 5,
@@ -178,23 +230,21 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3,
   },
   title: {
-    // fontFamily: "DM Sans",
+    fontFamily: "DMSans_700Bold",
     fontSize: 34,
-    fontWeight: "600",
     textAlign: "left",
     alignSelf: "stretch",
     marginLeft: 20,
     margin: 10,
   },
   subtitle: {
-    // fontFamily: "DM Sans",
+    fontFamily: "DMSans_500Medium",
     fontSize: 22,
-    fontWeight: "600",
     marginLeft: 20,
     margin: 10,
   },
   emptytext: {
-    // fontFamily: "DM Sans",
+    fontFamily: "DMSans_400Regular",
     fontSize: 22,
     color: "#5551FF",
     marginLeft: 20,
@@ -231,22 +281,28 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
+    borderRadius: 5,
+    padding: 5,
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginLeft: 30,
+    marginRight: 30,
     elevation: 2,
   },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
+  buttonAccept: {
+    backgroundColor: "#5551FF",
   },
-  buttonClose: {
-    backgroundColor: "#2196F3",
+  buttonDecline: {
+    backgroundColor: "#F24E1E",
   },
-  textStyle: {
+  buttonText: {
     color: "white",
-    fontWeight: "bold",
+    fontFamily: "DMSans_700Bold",
     textAlign: "center",
   },
   modalText: {
+    fontSize: 14,
+    fontFamily: "DMSans_400Regular",
     marginBottom: 15,
     textAlign: "center",
   },

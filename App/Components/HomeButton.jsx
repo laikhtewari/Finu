@@ -7,11 +7,7 @@ export default function App({ navigation }) {
       style={styles.container}
       onPress={() => navigation.navigate("Home")}
     >
-      <Image
-        style={styles.icon}
-        source={require("../../assets/mail_icon.png")}
-        // source={require("../../assets/search.png")}
-      />
+      <Image style={styles.icon} source={require("../../assets/home.png")} />
       <Text style={styles.text}>Home</Text>
     </Pressable>
   );
@@ -28,6 +24,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 5,
+    resizeMode: "contain",
     height: "100%",
   },
   text: {
