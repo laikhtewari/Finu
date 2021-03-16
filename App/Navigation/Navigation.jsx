@@ -15,14 +15,14 @@ export default function Navigator() {
           name="Home"
           component={HomeScreen}
           options={{
-            headerTitle: () => <Text style={styles.header}>Home</Text>,
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="Invites"
           component={InvitesScreen}
           options={{
-            headerTitle: () => <Text style={styles.header}>Invites</Text>,
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

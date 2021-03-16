@@ -19,7 +19,7 @@ global.doc_margin = 5;
 export default function App({ navigation }) {
   // state stuff here
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#fff" }}>
       <TouchableOpacity
         onPress={() => navigation.navigate("Invites")}
         style={{
@@ -229,6 +229,7 @@ function Filter(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
