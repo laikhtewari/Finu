@@ -149,7 +149,8 @@ const styles = StyleSheet.create({
   flatlist: {
     // flex: 1,
     width: "100%",
-    marginBottom: 25,
+    marginTop: 15,
+    marginBottom: 15,
   },
   invite: {
     flexDirection: "row",
@@ -160,19 +161,21 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   icon: {
-    marginRight: 10,
+    marginLeft: 10,
+    marginRight: 15,
   },
   invitetext: {
     // fontFamily: "DM Sans",
     fontSize: 22,
-    margin: 3,
+    marginLeft: 3,
+    margin: 5,
   },
   invitetextwrapper: {
     // marginRight: 20,
     // width: "100%",
-    width: "85%", //hacky fix, above doesn't work for some reason
+    width: "80%", // hacky fix, above 2 lines doesn't work for some reason
     borderColor: "black",
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
   },
   title: {
     // fontFamily: "DM Sans",

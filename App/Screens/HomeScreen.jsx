@@ -13,6 +13,7 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import InviteButton from "./../Components/InviteButton";
 
 global.doc_margin = 5;
 
@@ -20,17 +21,7 @@ export default function App({ navigation }) {
   // state stuff here
   return (
     <SafeAreaView style={{ backgroundColor: "#fff" }}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Invites")}
-        style={{
-          alignItems: "flex-end",
-          marginTop: 10,
-          marginRight: 20,
-          marginBottom: 10,
-        }}
-      >
-        <Mail />
-      </TouchableOpacity>
+      <InviteButton navigation={navigation} />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -42,15 +33,6 @@ export default function App({ navigation }) {
 
       <DocumentGrid />
     </SafeAreaView>
-  );
-}
-
-function Mail(props) {
-  return (
-    <View style={{ alignItems: "center" }}>
-      <Image source={require("../../assets/mail_icon.png")} />
-      <Text style={styles.mailText}>Invites</Text>
-    </View>
   );
 }
 
@@ -232,9 +214,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  mailText: {
-    fontSize: 13,
-    fontWeight: "bold",
   },
 });
