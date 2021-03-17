@@ -19,6 +19,8 @@ global.doc_margin = 5;
 
 export default function App({ navigation }) {
   // state stuff here
+  const [value, onChangeText] = React.useState('Search Documents');
+  const search_bar_height = 40;
   return (
     <SafeAreaView style={{ backgroundColor: "#fff" }}>
       <InviteButton navigation={navigation} />
@@ -37,26 +39,26 @@ export default function App({ navigation }) {
 }
 
 function Searchbar(props) {
-  return (
-    <View
+  return(
+    <View 
       style={{
         height: props.search_bar_height,
-        underlineColor: "black",
+        underlineColor: 'black',
         borderBottomWidth: 2,
-        marginRight: 20,
-        marginLeft: 20,
-        bottom: 0,
-      }}
-    >
+        marginRight: 50,
+        marginLeft: 50,
+        bottom: 0
+    }}>
+
       <TextInput
-        style={{
+        style={{ 
           height: props.search_bar_height,
-          color: "black",
-          fontSize: 24,
+          color: 'black',
+          fontSize: 24
         }}
         // onChangeText={(event.target.text) => updateTextStateFunc()}
         placeholder={props.default_text}
-        placeholderTextColor="grey"
+        placeholderTextColor='grey'
       />
 
       <TouchableOpacity
@@ -71,8 +73,8 @@ function Searchbar(props) {
       >
         <Image
           style={{
-            height: "100%",
-            width: "100%",
+            height: '100%',
+            width: '100%'
           }}
           source={require("../../assets/search.png")}
         />
@@ -211,8 +213,8 @@ function Filter(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
