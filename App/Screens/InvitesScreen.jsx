@@ -13,25 +13,32 @@ import {
   Pressable,
 } from "react-native";
 import HomeButton from "../Components/HomeButton";
-import { AppLoading } from "expo-app-loading";
+// fonts
+import AppLoading from "expo-app-loading";
 import {
   useFonts,
   DMSans_400Regular,
   DMSans_500Medium,
   DMSans_700Bold,
 } from "@expo-google-fonts/dm-sans";
+// blur
+import { BlurView } from "expo-blur";
 
 export default function App({ navigation }, route, props) {
+  // load fonts
   let [fontsLoaded] = useFonts({
     DMSans_400Regular,
     DMSans_500Medium,
     DMSans_700Bold,
   });
+  // states
   const [modalVisible, setModalVisible] = useState(false);
   const [sent, setSent] = useState([]);
   const [recieved, setRecieved] = useState([
-    [0, "Julia"],
-    [1, "Angela"],
+    { name: "Julia" },
+    "Angela",
+    "Bob",
+    "Martin",
   ]);
   const [text, setText] = useState("");
 
@@ -64,7 +71,7 @@ export default function App({ navigation }, route, props) {
           //   setModalVisible(!modalVisible);
           // }}
         >
-          <View style={styles.centeredView}>
+          <BlurView style={styles.blurView} intensity={80}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
                 {name} sent you an invitation to collaborate on their
@@ -78,19 +85,21 @@ export default function App({ navigation }, route, props) {
               >
                 <Pressable
                   style={[styles.button, styles.buttonDecline]}
+                  // add onpress functionality
                   onPress={() => setModalVisible(!modalVisible)}
                 >
                   <Text style={styles.buttonText}>Decline</Text>
                 </Pressable>
                 <Pressable
                   style={[styles.button, styles.buttonAccept]}
+                  // add onpress functionality
                   onPress={() => setModalVisible(!modalVisible)}
                 >
                   <Text style={styles.buttonText}>Accept</Text>
                 </Pressable>
               </View>
             </View>
-          </View>
+          </BlurView>
         </Modal>
         <Pressable style={styles.invite} onPress={() => setModalVisible(true)}>
           <Image
@@ -109,87 +118,41 @@ export default function App({ navigation }, route, props) {
     return index.toString();
   };
 
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // } else {
-  return (
-    <SafeAreaView style={styles.container}>
-      <HomeButton navigation={navigation} />
-      <Text style={styles.title}>Invites</Text>
-      <View style={styles.flatlist}>
-        <Text style={styles.subtitle}>Sent</Text>
-        {sent.length === 0 ? (
-          <Text style={styles.emptytext}>No pending requests.</Text>
-        ) : (
-          <FlatList
-            data={sent}
-            renderItem={renderSent}
-            keyExtractor={(name, index) => keyExtractor(index)}
-          />
-        )}
-      </View>
-      <View style={styles.flatlist}>
-        <Text style={styles.subtitle}>Recieved</Text>
-        {recieved.length === 0 ? (
-          <Text style={styles.emptytext}>No new invites.</Text>
-        ) : (
-          <FlatList
-            data={recieved}
-            renderItem={renderRecieved}
-            keyExtractor={(name, index) => keyExtractor(index)}
-          />
-        )}
-      </View>
-
-      {/* <View style={styles.centeredView}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          // onRequestClose={() => {
-          //   Alert.alert("Modal has been closed.");
-          //   setModalVisible(!modalVisible);
-          // }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>
-                Julia sent you an invitation to collaborate on their
-                PLACEHOLDER_NAME project
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Pressable
-                  style={[styles.button, styles.buttonDecline]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.buttonText}>Decline</Text>
-                </Pressable>
-                <Pressable
-                  style={[styles.button, styles.buttonAccept]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.buttonText}>Accept</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-        </Modal>
-        <Pressable
-          style={[styles.button, styles.buttonAccept]}
-          onPress={() => setModalVisible(true)}
-        >
-          <Text style={styles.buttonText}>Show Modal</Text>
-        </Pressable>
-      </View> */}
-    </SafeAreaView>
-  );
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <SafeAreaView style={styles.container}>
+        <HomeButton navigation={navigation} />
+        <Text style={styles.title}>Invites</Text>
+        <View style={styles.flatlist}>
+          <Text style={styles.subtitle}>Sent</Text>
+          {sent.length === 0 ? (
+            <Text style={styles.emptytext}>No pending requests.</Text>
+          ) : (
+            <FlatList
+              data={sent}
+              renderItem={renderSent}
+              keyExtractor={(name, index) => keyExtractor(index)}
+            />
+          )}
+        </View>
+        <View style={styles.flatlist}>
+          <Text style={styles.subtitle}>Recieved</Text>
+          {recieved.length === 0 ? (
+            <Text style={styles.emptytext}>No new invites.</Text>
+          ) : (
+            <FlatList
+              data={recieved}
+              renderItem={renderRecieved}
+              keyExtractor={(name, index) => keyExtractor(index)}
+            />
+          )}
+        </View>
+      </SafeAreaView>
+    );
+  }
 }
-// }
 
 const styles = StyleSheet.create({
   container: {
@@ -259,7 +222,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
   },
-  centeredView: {
+  blurView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
