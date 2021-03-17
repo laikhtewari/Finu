@@ -16,12 +16,7 @@ import {
 import InviteButton from "./../Components/InviteButton";
 // fonts
 import AppLoading from "expo-app-loading";
-import {
-  useFonts,
-  DMSans_400Regular,
-  DMSans_500Medium,
-  DMSans_700Bold,
-} from "@expo-google-fonts/dm-sans";
+import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
 
 global.doc_margin = 5;
 
@@ -29,8 +24,6 @@ export default function App({ navigation }) {
   // load fonts
   let [fontsLoaded] = useFonts({
     DMSans_400Regular,
-    DMSans_500Medium,
-    DMSans_700Bold,
   });
   // state stuff here
   if (!fontsLoaded) {
