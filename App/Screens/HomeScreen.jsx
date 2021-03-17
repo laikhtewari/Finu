@@ -34,25 +34,6 @@ export default function App({ navigation }) {
     DMSans_700Bold,
   });
   // state stuff here
-<<<<<<< HEAD
-  const [value, onChangeText] = React.useState('Search Documents');
-  const search_bar_height = 40;
-  return (
-    <SafeAreaView style={{ backgroundColor: "#fff" }}>
-      <InviteButton navigation={navigation} />
-
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <Searchbar search_bar_height={40} default_text="Search Projects" />
-      </KeyboardAvoidingView>
-
-      <FilterScrollable />
-
-      <DocumentGrid navigation={navigation}/>
-    </SafeAreaView>
-  );
-=======
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -72,7 +53,6 @@ export default function App({ navigation }) {
       </SafeAreaView>
     );
   }
->>>>>>> d31735f5322aa176f672b907a5fb79d3020daf78
 }
 
 function Searchbar(props) {
@@ -90,14 +70,9 @@ function Searchbar(props) {
       <TextInput
         style={{ 
           height: props.search_bar_height,
-<<<<<<< HEAD
-          color: 'black',
-          fontSize: 24
-=======
           color: "black",
           fontFamily: "DMSans_400Regular",
           fontSize: 22,
->>>>>>> d31735f5322aa176f672b907a5fb79d3020daf78
         }}
         // onChangeText={(event.target.text) => updateTextStateFunc()}
         placeholder={props.default_text}
