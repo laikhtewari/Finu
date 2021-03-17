@@ -15,6 +15,8 @@ import {
   Pressable
 } from "react-native";
 import InviteButton from "./../Components/InviteButton";
+import { useNavigation } from '@react-navigation/native';
+
 // fonts
 import AppLoading from "expo-app-loading";
 import {
@@ -136,12 +138,13 @@ function Document(props) {
 }
 
 function AddDocument(props) {
+  const navigation = useNavigation()
   return (
     <View
       style={{ width: 100, alignItems: "center", margin: global.doc_margin }}
     >
       <Pressable
-        onPress={() => props.navigation.navigate("NewProject")}
+        onPress={() => navigation.navigate("NewProject")}
       >
         <Image
           style={{ marginBottom: 10 }}
@@ -164,7 +167,7 @@ function DocumentGrid({ navigation }) {
         alignItems: "center",
       }}
     >
-      <DocumentRow include_add="true" navigation={navigation}/>
+      <DocumentRow include_add="true"/>
       <DocumentRow />
       <DocumentRow />
       <DocumentRow />
@@ -177,7 +180,7 @@ function DocumentGrid({ navigation }) {
 
 function DocumentRow(props) {
   const comp = props.include_add ? (
-    <AddDocument navigation={props.navigation}/>
+    <AddDocument/>
   ) : (
     <Document document_title={"Document 0"} />
   );
