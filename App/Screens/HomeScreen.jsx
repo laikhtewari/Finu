@@ -15,11 +15,26 @@ import {
   Pressable
 } from "react-native";
 import InviteButton from "./../Components/InviteButton";
+// fonts
+import AppLoading from "expo-app-loading";
+import {
+  useFonts,
+  DMSans_400Regular,
+  DMSans_500Medium,
+  DMSans_700Bold,
+} from "@expo-google-fonts/dm-sans";
 
 global.doc_margin = 5;
 
 export default function App({ navigation }) {
+  // load fonts
+  let [fontsLoaded] = useFonts({
+    DMSans_400Regular,
+    DMSans_500Medium,
+    DMSans_700Bold,
+  });
   // state stuff here
+<<<<<<< HEAD
   const [value, onChangeText] = React.useState('Search Documents');
   const search_bar_height = 40;
   return (
@@ -37,6 +52,27 @@ export default function App({ navigation }) {
       <DocumentGrid navigation={navigation}/>
     </SafeAreaView>
   );
+=======
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <SafeAreaView style={{ backgroundColor: "#fff" }}>
+        <InviteButton navigation={navigation} />
+
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <Searchbar search_bar_height={40} default_text="Search Projects" />
+        </KeyboardAvoidingView>
+
+        <FilterScrollable />
+
+        <DocumentGrid />
+      </SafeAreaView>
+    );
+  }
+>>>>>>> d31735f5322aa176f672b907a5fb79d3020daf78
 }
 
 function Searchbar(props) {
@@ -54,8 +90,14 @@ function Searchbar(props) {
       <TextInput
         style={{ 
           height: props.search_bar_height,
+<<<<<<< HEAD
           color: 'black',
           fontSize: 24
+=======
+          color: "black",
+          fontFamily: "DMSans_400Regular",
+          fontSize: 22,
+>>>>>>> d31735f5322aa176f672b907a5fb79d3020daf78
         }}
         // onChangeText={(event.target.text) => updateTextStateFunc()}
         placeholder={props.default_text}
@@ -109,7 +151,9 @@ function Document(props) {
         source={require("../../assets/document_outline.png")}
       />
       <View style={{ flexDirection: "row" }}>
-        <Text style={{}}>{props.document_title}</Text>
+        <Text style={{ fontSize: 14, fontFamily: "DMSans_400Regular" }}>
+          {props.document_title}
+        </Text>
         <ColoredCircle color="powderblue" />
       </View>
     </View>
@@ -174,7 +218,9 @@ function DocumentRow(props) {
 function FilterScrollable(props) {
   return (
     <View style={{ margin: 20 }}>
-      <Text style={{ fontSize: 18 }}>Sort by:</Text>
+      <Text style={{ fontSize: 16, fontFamily: "DMSans_400Regular" }}>
+        Sort by:
+      </Text>
       <ScrollView
         style={{ width: "100%" }}
         horizontal={true}
@@ -208,7 +254,14 @@ function Filter(props) {
       }}
     >
       {props.color && <ColoredCircle color={props.color} />}
-      <Text style={{ paddingLeft: 10, paddingRight: 10 }}>
+      <Text
+        style={{
+          fontSize: 16,
+          fontFamily: "DMSans_400Regular",
+          paddingLeft: 10,
+          paddingRight: 10,
+        }}
+      >
         {props.filter_name}
       </Text>
     </View>
