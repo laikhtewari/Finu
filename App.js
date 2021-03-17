@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput, Image, Keyboard, TouchableWithoutFeedback} from 'react-native';
@@ -189,3 +190,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+=======
+import React, { useState } from "react";
+import Navigator from "./App/Navigation/Navigation.jsx";
+
+export default function App(props) {
+  return <Navigator />;
+}
+>>>>>>> peng-navigation
