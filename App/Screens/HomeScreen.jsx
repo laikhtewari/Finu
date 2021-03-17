@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Pressable
 } from "react-native";
 import InviteButton from "./../Components/InviteButton";
 
@@ -33,7 +34,7 @@ export default function App({ navigation }) {
 
       <FilterScrollable />
 
-      <DocumentGrid />
+      <DocumentGrid navigation={navigation}/>
     </SafeAreaView>
   );
 }
@@ -120,16 +121,20 @@ function AddDocument(props) {
     <View
       style={{ width: 100, alignItems: "center", margin: global.doc_margin }}
     >
-      <Image
-        style={{ marginBottom: 10 }}
-        source={require("../../assets/add_document.png")}
-      />
-      <Text style={{ textAlign: "center" }}>New Project</Text>
+      <Pressable
+        onPress={() => props.navigation.navigate("NewProject")}
+      >
+        <Image
+          style={{ marginBottom: 10 }}
+          source={require("../../assets/add_document.png")}
+        />
+        <Text style={{ textAlign: "center", color: '#5551FF' }}>Create New</Text>
+      </Pressable>
     </View>
   );
 }
 
-function DocumentGrid(props) {
+function DocumentGrid({ navigation }) {
   //loop to gen n Document components in const
 
   return (
@@ -140,7 +145,7 @@ function DocumentGrid(props) {
         alignItems: "center",
       }}
     >
-      <DocumentRow include_add="true" />
+      <DocumentRow include_add="true" navigation={navigation}/>
       <DocumentRow />
       <DocumentRow />
       <DocumentRow />
@@ -153,7 +158,7 @@ function DocumentGrid(props) {
 
 function DocumentRow(props) {
   const comp = props.include_add ? (
-    <AddDocument />
+    <AddDocument navigation={props.navigation}/>
   ) : (
     <Document document_title={"Document 0"} />
   );

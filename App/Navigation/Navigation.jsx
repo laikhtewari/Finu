@@ -4,13 +4,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/HomeScreen";
 import InvitesScreen from "../Screens/InvitesScreen";
+import NewProject from "../Screens/NewProject";
 
 const Stack = createStackNavigator();
 
 export default function Navigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -24,6 +25,15 @@ export default function Navigator() {
           options={{
             headerShown: false,
           }}
+        />
+        <Stack.Screen
+          name="NewProject"
+          component={NewProject}
+          options={{
+            headerShown: false,
+
+          }}
+
         />
       </Stack.Navigator>
     </NavigationContainer>
