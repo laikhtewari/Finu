@@ -16,11 +16,14 @@ import {
 } from "react-native";
 import InviteButton from "./../Components/InviteButton";
 import { useNavigation } from "@react-navigation/native";
+import PurplePlus from "../../assets/purple_plus.svg";
+import FolderIcon from "../../assets/folder.svg";
+import NewFolderIcon from "../../assets/new_folder.svg";
 // fonts
 import AppLoading from "expo-app-loading";
 import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
 
-global.doc_margin = 5;
+global.doc_margin = 11;
 
 export default function App({ navigation }) {
   // load fonts
@@ -33,7 +36,7 @@ export default function App({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <SafeAreaView style={{ backgroundColor: "#fff" }}>
+      <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>
         <InviteButton />
 
         <KeyboardAvoidingView
@@ -44,6 +47,87 @@ export default function App({ navigation }) {
 
         <FilterScrollable />
 
+        <Text
+          style={{
+            marginLeft: 50,
+            fontFamily: "DMSans_400Regular",
+            fontSize: 16,
+          }}
+        >
+          Folders:
+        </Text>
+        <ScrollView
+          style={{
+            flexDirection: "row",
+            marginLeft: 50,
+            marginRight: 50,
+            marginTop: 18,
+            marginBottom: 10,
+            minHeight: 125,
+          }}
+          horizontal={true}
+          // showsHorizontalScrollIndicator={false}
+        >
+          <View style={{ marginRight: 20 }}>
+            <NewFolderIcon />
+            <Text
+              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
+            >
+              New Folder
+            </Text>
+          </View>
+          <View style={{ marginRight: 20 }}>
+            <FolderIcon />
+            <Text
+              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
+            >
+              Folder A
+            </Text>
+          </View>
+          <View style={{ marginRight: 20 }}>
+            <FolderIcon />
+            <Text
+              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
+            >
+              Folder B
+            </Text>
+          </View>
+          <View style={{ marginRight: 20 }}>
+            <FolderIcon />
+            <Text
+              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
+            >
+              Folder C
+            </Text>
+          </View>
+        </ScrollView>
+        {/* <Text>example</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            marginLeft: 50,
+            marginRight: 50,
+            marginTop: 18,
+            marginBottom: 18,
+          }}
+        >
+          <View style={{ marginRight: 20 }}>
+            <NewFolderIcon />
+          </View>
+          <View>
+            <FolderIcon />
+          </View>
+        </View> */}
+
+        <Text
+          style={{
+            marginLeft: 50,
+            fontFamily: "DMSans_400Regular",
+            fontSize: 16,
+          }}
+        >
+          Projects:
+        </Text>
         <DocumentGrid />
       </SafeAreaView>
     );
@@ -102,10 +186,9 @@ function ColoredCircle(props) {
       style={{
         width: 10,
         height: 10,
-        marginTop: 3,
-        marginLeft: 3,
         backgroundColor: props.color,
         borderRadius: 10,
+        marginLeft: 3,
       }}
     />
   );
@@ -115,14 +198,32 @@ function Document(props) {
   const navigation = useNavigation();
   return (
     <Pressable
-      style={{ width: 100, alignItems: "center", margin: global.doc_margin }}
+      style={{
+        // width: 100,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: global.doc_margin,
+      }}
       onPress={() => navigation.navigate("Project")}
     >
-      <Image
-        style={{ marginBottom: 10 }}
-        source={require("../../assets/document_outline.png")}
-      />
-      <View style={{ flexDirection: "row" }}>
+      <View style={styles.box}>
+        <View
+          style={{
+            backgroundColor: "black",
+            width: "100%",
+            height: 13,
+            position: "absolute",
+            bottom: 0,
+          }}
+        />
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Text style={{ fontSize: 14, fontFamily: "DMSans_400Regular" }}>
           {props.document_title}
         </Text>
@@ -135,12 +236,16 @@ function Document(props) {
 function AddDocument(props) {
   return (
     <View
-      style={{ width: 100, alignItems: "center", margin: global.doc_margin }}
+      style={{
+        // width: 100,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: global.doc_margin,
+      }}
     >
-      <Image
-        style={{ marginBottom: 10 }}
-        source={require("../../assets/add_document.png")}
-      />
+      <View style={[styles.box, styles.add]}>
+        <PurplePlus />
+      </View>
       <Text style={{ textAlign: "center" }}>New Project</Text>
     </View>
   );
@@ -151,19 +256,16 @@ function DocumentGrid(props) {
 
   return (
     <ScrollView
+      style={{ marginTop: 12, marginLeft: 30, marginRight: 30, height: "50%" }}
       contentContainerStyle={{
-        margin: 30,
-        flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <DocumentRow include_add="true" />
       <DocumentRow />
       <DocumentRow />
       <DocumentRow />
-      <DocumentRow />
-      <DocumentRow />
-      <View style={{ height: 200 }}></View>
     </ScrollView>
   );
 }
@@ -175,7 +277,7 @@ function DocumentRow(props) {
     <Document document_title={"Document 0"} />
   );
   return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       {comp}
       <Document document_title={"Document 1"} />
       <Document document_title={"Document 2"} />
@@ -186,7 +288,13 @@ function DocumentRow(props) {
 function FilterScrollable(props) {
   return (
     <View style={{ margin: 20 }}>
-      <Text style={{ fontSize: 16, fontFamily: "DMSans_400Regular" }}>
+      <Text
+        style={{
+          fontSize: 16,
+          fontFamily: "DMSans_400Regular",
+          marginBottom: 13,
+        }}
+      >
         Sort by:
       </Text>
       <ScrollView
@@ -200,39 +308,42 @@ function FilterScrollable(props) {
         <Filter filter_name="Taxes" color="orange" />
         <Filter filter_name="Rent" color="blue" />
         <Filter filter_name="Lease" color="brown" />
-        <Filter filter_name=" + Add Filter" />
+        <Filter filter_name=" + Add Filter" on="true" />
       </ScrollView>
     </View>
   );
 }
 
 function Filter(props) {
+  let outline = props.on ? "#000" : "#C4C4C4";
+
   return (
-    <View
+    <Pressable
       style={{
         borderWidth: 1,
         borderRadius: 20,
-        borderColor: "grey",
+        borderColor: outline,
         alignSelf: "flex-start",
         flexDirection: "row",
         alignItems: "center",
-        padding: 10,
+        padding: 6,
         marginRight: 10,
-        marginTop: 10,
       }}
+      onPress={() => (outline = !outline)} // doesn't work
     >
       {props.color && <ColoredCircle color={props.color} />}
       <Text
         style={{
           fontSize: 16,
           fontFamily: "DMSans_400Regular",
+          color: outline,
           paddingLeft: 10,
           paddingRight: 10,
         }}
       >
         {props.filter_name}
       </Text>
-    </View>
+    </Pressable>
   );
 }
 
@@ -242,5 +353,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    fontFamily: "DMSans_400Regular",
+    fontSize: 14,
+  },
+  box: {
+    borderWidth: 2,
+    borderRadius: 8,
+    height: 123,
+    width: 90,
+    marginBottom: 15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  add: {
+    borderColor: "#5551FF",
+    borderStyle: "dashed",
   },
 });

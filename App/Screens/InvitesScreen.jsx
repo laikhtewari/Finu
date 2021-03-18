@@ -74,7 +74,8 @@ export default function App({ navigation }, props) {
           <BlurView style={styles.blurView} intensity={80}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                {item} sent you an invitation to collaborate on their
+                {/* {item}  */}
+                Bob sent you an invitation to collaborate on their
                 PLACEHOLDER_NAME project
               </Text>
               <View
@@ -93,7 +94,11 @@ export default function App({ navigation }, props) {
                 <Pressable
                   style={[styles.button, styles.buttonAccept]}
                   // add onpress functionality
-                  onPress={() => setModalVisible(!modalVisible)}
+                  onPress={() => {
+                    // setRecieved(recieved.splice(index, 1));
+                    setRecieved(["Julia", "Angela", "Martin"]);
+                    setModalVisible(!modalVisible);
+                  }}
                 >
                   <Text style={styles.buttonText}>Accept</Text>
                 </Pressable>
