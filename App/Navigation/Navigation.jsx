@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SplashScreen from "../Screens/SplashScreen";
 import HomeScreen from "../Screens/HomeScreen";
 import InvitesScreen from "../Screens/InvitesScreen";
+import NewProjectScreen from "../Screens/NewProjectScreen";
 import ProjectScreen from "../Screens/ProjectScreen";
 import GroupScreen from "../Screens/GroupScreen";
 
@@ -31,6 +32,13 @@ export default function Navigator() {
         <Stack.Screen
           name="Invites"
           component={InvitesScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="NewProject"
+          component={NewProjectScreen}
           options={{
             headerShown: false,
           }}

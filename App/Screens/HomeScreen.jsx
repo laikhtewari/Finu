@@ -234,20 +234,22 @@ function Document(props) {
 }
 
 function AddDocument(props) {
+  const navigation = useNavigation();
   return (
-    <View
+    <Pressable
       style={{
         // width: 100,
         alignItems: "center",
         justifyContent: "center",
         margin: global.doc_margin,
       }}
+      onPress={() => navigation.navigate("NewProject")}
     >
       <View style={[styles.box, styles.add]}>
         <PurplePlus />
       </View>
       <Text style={{ textAlign: "center" }}>New Project</Text>
-    </View>
+    </Pressable>
   );
 }
 
