@@ -4,6 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/HomeScreen";
 import InvitesScreen from "../Screens/InvitesScreen";
+import ProjectScreen from "../Screens/ProjectScreen";
+import GroupScreen from "../Screens/GroupScreen";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +23,20 @@ export default function Navigator() {
         <Stack.Screen
           name="Invites"
           component={InvitesScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Project"
+          component={ProjectScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Group"
+          component={GroupScreen}
           options={{
             headerShown: false,
           }}

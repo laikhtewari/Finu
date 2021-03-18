@@ -12,8 +12,10 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Pressable,
 } from "react-native";
 import InviteButton from "./../Components/InviteButton";
+import { useNavigation } from "@react-navigation/native";
 // fonts
 import AppLoading from "expo-app-loading";
 import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
@@ -32,7 +34,7 @@ export default function App({ navigation }) {
   } else {
     return (
       <SafeAreaView style={{ backgroundColor: "#fff" }}>
-        <InviteButton navigation={navigation} />
+        <InviteButton />
 
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -110,9 +112,11 @@ function ColoredCircle(props) {
 }
 
 function Document(props) {
+  const navigation = useNavigation();
   return (
-    <View
+    <Pressable
       style={{ width: 100, alignItems: "center", margin: global.doc_margin }}
+      onPress={() => navigation.navigate("Project")}
     >
       <Image
         style={{ marginBottom: 10 }}
@@ -124,7 +128,7 @@ function Document(props) {
         </Text>
         <ColoredCircle color="powderblue" />
       </View>
-    </View>
+    </Pressable>
   );
 }
 

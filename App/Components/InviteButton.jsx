@@ -1,11 +1,13 @@
 import React from "react";
 import { Text, StyleSheet, Pressable, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import MailLogo from "../../assets/mail_icon.svg";
 // fonts
 import AppLoading from "expo-app-loading";
 import { useFonts, DMSans_700Bold } from "@expo-google-fonts/dm-sans";
 
-export default function App({ navigation }) {
+export default function App() {
+  const navigation = useNavigation();
   // load fonts
   let [fontsLoaded] = useFonts({
     DMSans_700Bold,

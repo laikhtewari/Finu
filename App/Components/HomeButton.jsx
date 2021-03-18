@@ -1,11 +1,13 @@
 import React from "react";
 import { Text, StyleSheet, Pressable, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import HomeLogo from "../../assets/home.svg";
 // fonts
 import AppLoading from "expo-app-loading";
 import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
 
-export default function App({ navigation }) {
+export default function App() {
+  const navigation = useNavigation();
   // load fonts
   let [fontsLoaded] = useFonts({
     DMSans_400Regular,
