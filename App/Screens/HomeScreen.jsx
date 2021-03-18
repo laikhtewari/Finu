@@ -26,25 +26,7 @@ export default function App({ navigation }) {
     DMSans_400Regular,
   });
   // state stuff here
-<<<<<<< HEAD
-  const [value, onChangeText] = React.useState('Search Documents');
-  const search_bar_height = 40;
-  return (
-    <SafeAreaView style={{ backgroundColor: "#fff" }}>
-      <InviteButton navigation={navigation} />
-
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <Searchbar search_bar_height={40} default_text="Search Projects" />
-      </KeyboardAvoidingView>
-
-      <FilterScrollable />
-
-      <DocumentGrid />
-    </SafeAreaView>
-  );
-=======
+  const [value, onChangeText] = React.useState("Search Projects");
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -64,36 +46,30 @@ export default function App({ navigation }) {
       </SafeAreaView>
     );
   }
->>>>>>> d31735f5322aa176f672b907a5fb79d3020daf78
 }
 
 function Searchbar(props) {
-  return(
-    <View 
+  return (
+    <View
       style={{
         height: props.search_bar_height,
-        underlineColor: 'black',
+        underlineColor: "black",
         borderBottomWidth: 2,
         marginRight: 50,
         marginLeft: 50,
-        bottom: 0
-    }}>
-
+        bottom: 0,
+      }}
+    >
       <TextInput
-        style={{ 
+        style={{
           height: props.search_bar_height,
-<<<<<<< HEAD
-          color: 'black',
-          fontSize: 24
-=======
           color: "black",
           fontFamily: "DMSans_400Regular",
           fontSize: 22,
->>>>>>> d31735f5322aa176f672b907a5fb79d3020daf78
         }}
         // onChangeText={(event.target.text) => updateTextStateFunc()}
         placeholder={props.default_text}
-        placeholderTextColor='grey'
+        placeholderTextColor="grey"
       />
 
       <TouchableOpacity
@@ -108,8 +84,8 @@ function Searchbar(props) {
       >
         <Image
           style={{
-            height: '100%',
-            width: '100%'
+            height: "100%",
+            width: "100%",
           }}
           source={require("../../assets/search.png")}
         />
@@ -259,8 +235,8 @@ function Filter(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
