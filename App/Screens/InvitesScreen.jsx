@@ -24,7 +24,7 @@ import {
 // blur
 import { BlurView } from "expo-blur";
 
-export default function App({ navigation }, route, props) {
+export default function App({ navigation }, props) {
   // load fonts
   let [fontsLoaded] = useFonts({
     DMSans_400Regular,
@@ -35,14 +35,14 @@ export default function App({ navigation }, route, props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [sent, setSent] = useState([]);
   const [recieved, setRecieved] = useState([
-    { name: "Julia" },
+    "Julia",
     "Angela",
     "Bob",
     "Martin",
   ]);
   const [text, setText] = useState("");
 
-  const renderSent = ({ index, name }) => {
+  const renderSent = ({ index, item }) => {
     return (
       <TouchableOpacity
         // onPress={() => some popup function }
@@ -53,13 +53,13 @@ export default function App({ navigation }, route, props) {
           style={styles.icon}
         />
         <View style={styles.invitetextwrapper}>
-          <Text style={styles.invitetext}>You sent {name} an invite!</Text>
+          <Text style={styles.invitetext}>You sent {item} an invite!</Text>
         </View>
       </TouchableOpacity>
     );
   };
 
-  const renderRecieved = ({ index, name }) => {
+  const renderRecieved = ({ index, item }) => {
     return (
       <View>
         <Modal
@@ -74,7 +74,8 @@ export default function App({ navigation }, route, props) {
           <BlurView style={styles.blurView} intensity={80}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                {name} sent you an invitation to collaborate on their
+                {/* {item}  */}
+                Bob sent you an invitation to collaborate on their
                 PLACEHOLDER_NAME project
               </Text>
               <View
@@ -93,7 +94,11 @@ export default function App({ navigation }, route, props) {
                 <Pressable
                   style={[styles.button, styles.buttonAccept]}
                   // add onpress functionality
-                  onPress={() => setModalVisible(!modalVisible)}
+                  onPress={() => {
+                    // setRecieved(recieved.splice(index, 1));
+                    setRecieved(["Julia", "Angela", "Martin"]);
+                    setModalVisible(!modalVisible);
+                  }}
                 >
                   <Text style={styles.buttonText}>Accept</Text>
                 </Pressable>
@@ -107,7 +112,7 @@ export default function App({ navigation }, route, props) {
             style={styles.icon}
           />
           <View style={styles.invitetextwrapper}>
-            <Text style={styles.invitetext}>{name} sent you an invite!</Text>
+            <Text style={styles.invitetext}>{item} sent you an invite!</Text>
           </View>
         </Pressable>
       </View>
@@ -123,7 +128,7 @@ export default function App({ navigation }, route, props) {
   } else {
     return (
       <SafeAreaView style={styles.container}>
-        <HomeButton navigation={navigation} />
+        <HomeButton />
         <Text style={styles.title}>Invites</Text>
         <View style={styles.flatlist}>
           <Text style={styles.subtitle}>Sent</Text>
@@ -261,6 +266,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontFamily: "DMSans_700Bold",
+    fontSize: 16,
     textAlign: "center",
   },
   modalText: {
