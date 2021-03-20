@@ -58,8 +58,10 @@ export default function App() {
         </View>
         {/* make X bigger, fix removing member functionality */}
         <Pressable
-          // onPress={(item) => setMembers(members.splice(index, 1))}
-          onPress={() => setMembers(["Angela", "Martin"])}
+          onPress={() => {
+            members.splice(index, 1);
+            // setMembers(members);
+          }}
         >
           <RedX style={styles.icon} />
         </Pressable>

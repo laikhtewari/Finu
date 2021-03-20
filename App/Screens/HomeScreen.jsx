@@ -71,34 +71,22 @@ export default function App({ navigation }) {
           <View style={{ marginRight: 20 }}>
             <NewFolderIcon />
             <Text
-              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
+              style={[styles.text, { color: "#5551FF", textAlign: "center" }]}
             >
               New Folder
             </Text>
           </View>
           <View style={{ marginRight: 20 }}>
             <FolderIcon />
-            <Text
-              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
-            >
-              Folder A
-            </Text>
+            <Text style={[styles.text, { textAlign: "center" }]}>Folder A</Text>
           </View>
           <View style={{ marginRight: 20 }}>
             <FolderIcon />
-            <Text
-              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
-            >
-              Folder B
-            </Text>
+            <Text style={[styles.text, { textAlign: "center" }]}>Folder B</Text>
           </View>
           <View style={{ marginRight: 20 }}>
             <FolderIcon />
-            <Text
-              style={[styles.text, { color: "5551FF", textAlign: "center" }]}
-            >
-              Folder C
-            </Text>
+            <Text style={[styles.text, { textAlign: "center" }]}>Folder C</Text>
           </View>
         </ScrollView>
         {/* <Text>example</Text>

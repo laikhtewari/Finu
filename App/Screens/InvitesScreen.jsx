@@ -53,7 +53,9 @@ export default function App({ navigation }, props) {
           style={styles.icon}
         />
         <View style={styles.invitetextwrapper}>
-          <Text style={styles.invitetext}>You sent {item} an invite!</Text>
+          <Text style={styles.invitetext}>
+            {item} has a pending invite from you
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -74,8 +76,7 @@ export default function App({ navigation }, props) {
           <BlurView style={styles.blurView} intensity={80}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                {/* {item}  */}
-                Bob sent you an invitation to collaborate on their
+                {item} sent you an invitation to collaborate on their
                 PLACEHOLDER_NAME project
               </Text>
               <View
@@ -86,17 +87,19 @@ export default function App({ navigation }, props) {
               >
                 <Pressable
                   style={[styles.button, styles.buttonDecline]}
-                  // add onpress functionality
-                  onPress={() => setModalVisible(!modalVisible)}
+                  onPress={() => {
+                    recieved.splice(index, 1);
+                    // setRecieved(recieved);
+                    setModalVisible(!modalVisible);
+                  }}
                 >
                   <Text style={styles.buttonText}>Decline</Text>
                 </Pressable>
                 <Pressable
                   style={[styles.button, styles.buttonAccept]}
-                  // add onpress functionality
                   onPress={() => {
-                    // setRecieved(recieved.splice(index, 1));
-                    setRecieved(["Julia", "Angela", "Martin"]);
+                    recieved.splice(index, 1);
+                    // setRecieved(recieved);
                     setModalVisible(!modalVisible);
                   }}
                 >
