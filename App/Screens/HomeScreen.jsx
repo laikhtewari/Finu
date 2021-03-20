@@ -12,13 +12,6 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-<<<<<<< HEAD
-  Pressable
-} from "react-native";
-import InviteButton from "./../Components/InviteButton";
-import { useNavigation } from '@react-navigation/native';
-
-=======
   Pressable,
 } from "react-native";
 import InviteButton from "./../Components/InviteButton";
@@ -26,7 +19,6 @@ import { useNavigation } from "@react-navigation/native";
 import PurplePlus from "../../assets/purple_plus.svg";
 import FolderIcon from "../../assets/folder.svg";
 import NewFolderIcon from "../../assets/new_folder.svg";
->>>>>>> peng-navigation
 // fonts
 import AppLoading from "expo-app-loading";
 import { useFonts, DMSans_400Regular } from "@expo-google-fonts/dm-sans";
@@ -39,10 +31,9 @@ export default function App({ navigation }) {
     DMSans_400Regular,
   });
   // state stuff here
-<<<<<<< HEAD
-=======
+
   const [value, onChangeText] = React.useState("Search Projects");
->>>>>>> peng-navigation
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -255,22 +246,10 @@ function AddDocument(props) {
         margin: global.doc_margin,
       }}
     >
-<<<<<<< HEAD
-      <Pressable
-        onPress={() => navigation.navigate("NewProject")}
-      >
-        <Image
-          style={{ marginBottom: 10 }}
-          source={require("../../assets/add_document.png")}
-        />
-        <Text style={{ textAlign: "center", color: '#5551FF' }}>Create New</Text>
-      </Pressable>
-=======
       <View style={[styles.box, styles.add]}>
         <PurplePlus />
       </View>
       <Text style={{ textAlign: "center" }}>New Project</Text>
->>>>>>> peng-navigation
     </View>
   );
 }

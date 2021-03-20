@@ -5698,12 +5698,6 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-<<<<<<< HEAD
-react-native-bottom-modal@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/react-native-bottom-modal/-/react-native-bottom-modal-0.5.6.tgz#dc2e55c697865cb4ef9b44d389cf1499651345dc"
-  integrity sha512-e1cpY5t+kF/dHHvOfV1wfsE4mUziA8KXZR0tGfYSUrl85AZmVe2h5+zDtDBDG5qBnPiIyHkAUJbB6y6FcPblnQ==
-=======
 react-native-elements@^3.3.2:
   version "3.3.2"
   resolved "https://registry.npmjs.org/react-native-elements/-/react-native-elements-3.3.2.tgz"
@@ -5717,7 +5711,6 @@ react-native-elements@^3.3.2:
     opencollective-postinstall "^2.0.3"
     react-native-ratings "^7.3.0"
     react-native-size-matters "^0.3.1"
->>>>>>> peng-navigation
 
 react-native-gesture-handler@~1.8.0:
   version "1.8.0"
@@ -5867,17 +5860,10 @@ react-timer-mixin@^0.13.4:
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
 
-<<<<<<< HEAD
-react@^17.0.1:
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
-  integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
-=======
 react@16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
->>>>>>> peng-navigation
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
