@@ -9,9 +9,6 @@ import {
 } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
-global.FINU_GRAY = '#D9D9D9'
-global.FINU_PURPLE = '#5551FF'
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -72,7 +69,7 @@ class App extends Component {
           handleClick={this.textClicked}
           borderWidth={this.state.textBorderWidth}
         />
-        <DocType
+        {/*<DocType
           name='Sound'
           description='Best for spoken agreements, meetings, and quick thoughts.'
           image={require('../../assets/soundfile.png')}
@@ -85,7 +82,17 @@ class App extends Component {
           image={require('../../assets/visualfile.png')}
           handleClick={this.visualClicked}
           borderWidth={this.state.visualBorderWidth}
-        />
+        />*/}
+
+        <View>
+          <View style={styles.insert}>
+            <Text style={{color: 'white'}}>Insert Text</Text>
+          </View>
+            <Text style={{color: 'white'}}>Compose Text</Text>
+          <View style={styles.compose}>
+
+          </View>          
+        </View>
         <BottomNavigation 
           backgroundColor={this.state.confirmColor}
         />
@@ -114,7 +121,7 @@ function DocType(props) {
 }
 
 function BottomNavigation(props) {
-  const navigaton = useNavigation()
+  const navigation = useNavigation()
   return(
     <View style={styles.bottom}>
       <Pressable
@@ -128,7 +135,7 @@ function BottomNavigation(props) {
       </Pressable>
       <Pressable
         style={[{backgroundColor: props.backgroundColor}, styles.confirm]}
-        onPress={(navigation) => navigation.navigate("SelectedDoc")}
+        onPress={navigation.goBack}
       >
         <Text style={{color: 'white'}}>Confirm</Text>
       </Pressable>
@@ -200,6 +207,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     position: 'absolute',
     bottom: 35
+  },
+  insert: {
+    backgroundColor: 'black', 
+    borderTopLeftRadius: 50,
+    width: 250,
+    height: 100
+  },
+  compose: {
+    backgroundColor: 'black', 
+    borderBottomRightRadius: 50,
+    width: 250,
+    height: 100
   }
 });
 

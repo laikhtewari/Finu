@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/HomeScreen";
 import InvitesScreen from "../Screens/InvitesScreen";
 import NewProject from "../Screens/NewProject";
+import SelectedDoc from "../Screens/SelectedDoc"
 
 const Stack = createStackNavigator();
 
@@ -31,9 +32,14 @@ export default function Navigator() {
           component={NewProject}
           options={{
             headerShown: false,
-
           }}
-
+        />
+        <Stack.Screen
+          name="SelectedDoc"
+          component={SelectedDoc}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
